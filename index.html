@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>产品说明书</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --text: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border: #334155;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 顶部导航 */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .menu-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .menu-btn:hover {
+            background: var(--bg);
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .search-box {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 16px 10px 36px;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: background 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg);
+        }
+
+        /* 侧边目录 */
+        .sidebar {
+            position: fixed;
+            top: 65px;
+            left: 0;
+            width: 280px;
+            height: calc(100vh - 65px);
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 65px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 998;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .toc-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-item {
+            margin-bottom: 4px;
+        }
+
+        .toc-link {
+            display: block;
+            padding: 10px 12px;
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .toc-link:hover, .toc-link.active {
+            background: var(--bg);
+            color: var(--primary);
+        }
+
+        .toc-link.active {
+            font-weight: 500;
+        }
+
+        /* 主内容区 */
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 85px 20px 40px;
+        }
+
+        .product-header {
+            text-align: center;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+
+        .product-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            box-shadow: var(--shadow);
+        }
+
+        .product-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .product-subtitle {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* 章节卡片 */
+        .section {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            scroll-margin-top: 80px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--bg);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .section-content {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .section-content p {
+            margin-bottom: 12px;
+        }
+
+        .section-content ul {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .section-content li {
+            margin-bottom: 8px;
+        }
+
+        /* 步骤指引 */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .step {
+            display: flex;
+            gap: 16px;
+            padding: 16px;
+            background: var(--bg);
+            border-radius: 12px;
+            transition: transform 0.2s;
+        }
+
+        .step:hover {
+            transform: translateX(4px);
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 15px;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+
+        .step-content p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* 警告提示 */
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        [data-theme="dark"] .warning-box {
+            background: #451a03;
+        }
+
+        .warning-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .warning-text {
+            font-size: 14px;
+            color: #92400e;
+        }
+
+        [data-theme="dark"] .warning-text {
+            color: #fcd34d;
+        }
+
+        /* 视频容器 */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            margin: 16px 0;
+            background: var(--bg);
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* FAQ折叠 */
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-question {
+            padding: 16px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-icon {
+            transition: transform 0.3s;
+            font-size: 12px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-bottom: 16px;
+        }
+
+        /* 底部操作栏 */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 100;
+        }
+
+        .bottom-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 12px;
+            transition: color 0.2s;
+        }
+
+        .bottom-btn:hover, .bottom-btn.active {
+            color: var(--primary);
+        }
+
+        .bottom-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* 搜索高亮 */
+        .highlight {
+            background: #fef08a;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        [data-theme="dark"] .highlight {
+            background: #854d0e;
+            color: #fef08a;
+        }
+
+        /* 进度条 */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--primary);
+            z-index: 1001;
+            transition: width 0.1s;
+        }
+
+        /* 回到顶部 */
+        .back-to-top {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+            z-index: 99;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 隐藏未匹配内容 */
+        .section.hidden {
+            display: none;
+        }
+
+        /* 加载动画 */
+        .skeleton {
+            background: linear-gradient(90deg, var(--bg) 25%, var(--border) 50%, var(--bg) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 8px;
+            height: 20px;
+            margin-bottom: 12px;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* 响应式 */
+        @media (min-width: 768px) {
+            .sidebar {
+                transform: translateX(0);
+                position: sticky;
+                top: 65px;
+                height: calc(100vh - 65px);
+            }
+            
+            .menu-btn {
+                display: none;
+            }
+            
+            .sidebar-overlay {
+                display: none;
+            }
+        }
+
+        /* 打印样式 */
+        @media print {
+            .header, .sidebar, .bottom-bar, .back-to-top {
+                display: none;
+            }
+            
+            .main-content {
+                padding-top: 20px;
+            }
+            
+            .section {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 阅读进度条 -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-content">
+            <button class="menu-btn" id="menuBtn" onclick="toggleSidebar()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="搜索说明书内容..." oninput="searchContent(this.value)">
+            </div>
+            
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
+        </div>
+    </header>
+
+    <!-- 侧边目录遮罩 -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- 侧边目录 -->
+    <nav class="sidebar" id="sidebar">
+        <div class="toc-title">目录导航</div>
+        <ul class="toc-list" id="tocList">
+            <li class="toc-item"><a class="toc-link active" onclick="scrollToSection('overview')">📦 产品概览</a></li>
+            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('safety')">⚠️ 安全须知</a></li>
+            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('quickstart')">🚀 快速入门</a></li>
+            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('features')">✨ 主要功能</a></li>
+            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('usage')">📖 使用指南</a></li>
+            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('maintenance')">🔧 维护保养</a></li>
+            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('troubleshooting')">🛠️ 故障排除</a></li>
+            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('faq')">❓ 常见问题</a></li>
+            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('specs')">📋 技术规格</a></li>
+        </ul>
+    </nav>
+
+    <!-- 主内容 -->
+    <main class="main-content" id="mainContent">
+        <!-- 产品头部 -->
+        <div class="product-header">
+            <div class="product-icon">📱</div>
+            <h1 class="product-title">智能设备 Pro Max</h1>
+            <p class="product-subtitle">型号: XJ-2024 | 版本: V2.1</p>
+        </div>
+
+        <!-- 产品概览 -->
+        <section class="section" id="overview">
+            <h2 class="section-title">
+                <span class="section-icon">📦</span>
+                产品概览
+            </h2>
+            <div class="section-content">
+                <p>感谢您选择智能设备 Pro Max。本产品采用最新技术，为您提供卓越的使用体验。</p>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <div class="play-btn">▶</div>
+                        <span>观看产品介绍视频</span>
+                    </div>
+                </div>
+                <ul>
+                    <li><strong>包装清单：</strong>主机 ×1、充电器 ×1、数据线 ×1、说明书 ×1、保修卡 ×1</li>
+                    <li><strong>保修政策：</strong>全国联保，享受三包服务，质保期为1年</li>
+                    <li><strong>客服热线：</strong>400-XXX-XXXX（服务时间：9:00-21:00）</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 安全须知 -->
+        <section class="section" id="safety">
+            <h2 class="section-title">
+                <span class="section-icon">⚠️</span>
+                安全须知
+            </h2>
+            <div class="section-content">
+                <div class="warning-box">
+                    <span class="warning-icon">⚡</span>
+                    <div class="warning-text">
+                        <strong>重要提示：</strong>使用前请仔细阅读以下安全注意事项，确保正确使用设备。
+                    </div>
+                </div>
+                <ul>
+                    <li>请勿在潮湿环境下使用或存放设备</li>
+                    <li>避免将设备暴露在极端温度环境中（低于-10°C或高于50°C）</li>
+                    <li>请使用原装充电器，避免使用劣质充电设备</li>
+                    <li>如发现设备异常发热、冒烟或异味，请立即停止使用并联系售后</li>
+                    <li>请勿自行拆解设备，以免造成安全隐患</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 快速入门 -->
+        <section class="section" id="quickstart">
+            <h2 class="section-title">
+                <span class="section-icon">🚀</span>
+                快速入门
+            </h2>
+            <div class="section-content">
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>开箱检查</h4>
+                            <p>确认包装内配件齐全，检查设备外观是否完好无损</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>充电激活</h4>
+                            <p>首次使用前，请将设备充满电（约需2小时）</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>开机设置</h4>
+                            <p>长按电源键3秒开机，按照屏幕提示完成初始设置</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>连接网络</h4>
+                            <p>进入设置 > 网络，选择Wi-Fi并输入密码连接</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 主要功能 -->
+        <section class="section" id="features">
+            <h2 class="section-title">
+                <span class="section-icon">✨</span>
+                主要功能
+            </h2>
+            <div class="section-content">
+                <p><strong>智能模式：</strong>设备可根据使用场景自动调整工作参数，优化性能表现。</p>
+                <p><strong>节能技术：</strong>采用先进的电源管理系统，续航时间提升40%。</p>
+                <p><strong>快速充电：</strong>支持快充技术，30分钟即可充至80%电量。</p>
+                <p><strong>智能互联：</strong>可通过专属APP远程控制和监控设备状态。</p>
+                <p><strong>安全防护：</strong>多重安全保护机制，包括过充保护、过热保护、短路保护等。</p>
+            </div>
+        </section>
+
+        <!-- 使用指南 -->
+        <section class="section" id="usage">
+            <h2 class="section-title">
+                <span class="section-icon">📖</span>
+                使用指南
+            </h2>
+            <div class="section-content">
+                <p><strong>开关机操作：</strong></p>
+                <ul>
+                    <li>开机：长按电源键3秒，直到指示灯亮起</li>
+                    <li>关机：长按电源键5秒，选择"关机"确认</li>
+                    <li>重启：长按电源键10秒强制重启</li>
+                </ul>
+                <p><strong>模式切换：</strong>短按功能键可在标准模式、节能模式、高性能模式之间切换，指示灯颜色对应不同模式（蓝/绿/红）。</p>
+                <p><strong>连接APP：</strong>扫描二维码下载专属APP，注册账号后按照提示绑定设备即可实现远程控制。</p>
+            </div>
+        </section>
+
+        <!-- 维护保养 -->
+        <section class="section" id="maintenance">
+            <h2 class="section-title">
+                <span class="section-icon">🔧</span>
+                维护保养
+            </h2>
+            <div class="section-content">
+                <ul>
+                    <li>定期使用柔软干布清洁设备表面，避免使用化学清洁剂</li>
+                    <li>每月检查一次接口是否有灰尘堆积，必要时用棉签清理</li>
+                    <li>长期不使用时，请保持50%电量存放，每3个月充电一次</li>
+                    <li>避免设备受到剧烈撞击或挤压</li>
+                    <li>软件更新：定期检查系统更新，保持设备最佳性能</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 故障排除 -->
+        <section class="section" id="troubleshooting">
+            <h2 class="section-title">
+                <span class="section-icon">🛠️</span>
+                故障排除
+            </h2>
+            <div class="section-content">
+                <table style="width:100%; border-collapse: collapse; font-size: 14px;">
+                    <tr style="border-bottom: 2px solid var(--border);">
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">故障现象</th>
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">可能原因</th>
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">解决方法</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">无法开机</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">电量耗尽</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">充电15分钟后再尝试</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">充电缓慢</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">使用非原装充电器</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">更换原装充电器</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">连接不稳定</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">信号干扰</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">远离干扰源重试</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">异常发热</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">长时间高负载运行</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">暂停使用待冷却</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- 常见问题 -->
+        <section class="section" id="faq">
+            <h2 class="section-title">
+                <span class="section-icon">❓</span>
+                常见问题
+            </h2>
+            <div class="section-content">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>如何重置设备到出厂设置？</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        进入设置 > 系统 > 重置选项，选择"恢复出厂设置"，确认后设备将自动重启并清除所有数据。请注意提前备份重要数据。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>支持哪些充电协议？</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        本设备支持PD 3.0、QC 4.0+、PPS等多种快充协议，最高支持65W快充。使用原装充电器可获得最佳充电体验。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>防水等级是多少？可以在浴室使用吗？</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        本设备具备IPX4生活防水等级，可防溅水但不建议浸入水中或在高湿度环境如浴室长期使用。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>如何联系售后服务？</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        您可以通过以下方式联系我们：客服热线 400-XXX-XXXX（工作日9:00-18:00）、官方微信公众号"XXX服务"、官方网站在线客服。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 技术规格 -->
+        <section class="section" id="specs">
+            <h2 class="section-title">
+                <span class="section-icon">📋</span>
+                技术规格
+            </h2>
+            <div class="section-content">
+                <table style="width:100%; font-size: 14px;">
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:10px 0; color:var(--text-secondary); width:40%;">产品尺寸</td>
+                        <td style="padding:10px 0; color:var(--text); font-weight:500;">150 × 75 × 8.5 mm</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:10px 0; color:var(--text-secondary);">产品重量</td>
+                        <td style="padding:10px 0; color:var(--text); font-weight:500;">185g</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:10px 0; color:var(--text-secondary);">电池容量</td>
+                        <td style="padding:10px 0; color:var(--text); font-weight:500;">5000mAh</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:10px 0; color:var(--text-secondary);">充电接口</td>
+                        <td style="padding:10px 0; color:var(--text); font-weight:500;">USB Type-C</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:10px 0; color:var(--text-secondary);">无线连接</td>
+                        <td style="padding:10px 0; color:var(--text); font-weight:500;">Wi-Fi 6 / 蓝牙 5.3</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:10px 0; color:var(--text-secondary);">工作温度</td>
+                        <td style="padding:10px 0; color:var(--text); font-weight:500;">0°C ~ 40°C</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <div style="text-align:center; padding:40px 0; color:var(--text-secondary); font-size:12px;">
+            <p>© 2024 XXX科技有限公司 版权所有</p>
+            <p style="margin-top:8px;">说明书版本 v2.1 | 最后更新：2024-03-15</p>
+        </div>
+    </main>
+
+    <!-- 底部操作栏 -->
+    <div class="bottom-bar">
+        <a class="bottom-btn active" onclick="scrollToSection('overview')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>首页</span>
+        </a>
+        <a class="bottom-btn" onclick="sharePage()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            <span>分享</span>
+        </a>
+        <a class="bottom-btn" onclick="window.print()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            <span>打印</span>
+        </a>
+        <a class="bottom-btn" href="tel:400-XXX-XXXX">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>客服</span>
+        </a>
+    </div>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // 主题切换
+        function toggleTheme() {
+            const html = document.documentElement;
+            const btn = document.getElementById('themeToggle');
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                btn.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                btn.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // 恢复主题设置
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('themeToggle').textContent = '☀️';
+        }
+
+        // 侧边栏切换
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const btn = document.getElementById('menuBtn');
+            
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+            btn.classList.toggle('active');
+        }
+
+        // 平滑滚动到指定章节
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // 更新目录激活状态
+                document.querySelectorAll('.toc-link').forEach(link => {
+                    link.classList.remove('active');
+                    if(link.getAttribute('onclick').includes(id)) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // 移动端关闭侧边栏
+                if (window.innerWidth < 768) {
+                    toggleSidebar();
+                }
+                
+                // 保存阅读进度
+                localStorage.setItem('lastSection', id);
+            }
+        }
+
+        // 搜索功能
+        function searchContent(keyword) {
+            const sections = document.querySelectorAll('.section');
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
+            if (!keyword.trim()) {
+                sections.forEach(s => s.classList.remove('hidden'));
+                // 清除高亮
+                document.querySelectorAll('.highlight').forEach(el => {
+                    el.outerHTML = el.innerHTML;
+                });
+                return;
+            }
+            
+            sections.forEach((section, index) => {
+                const text = section.textContent.toLowerCase();
+                const searchLower = keyword.toLowerCase();
+                
+                if (text.includes(searchLower)) {
+                    section.classList.remove('hidden');
+                    // 高亮匹配文本
+                    highlightText(section, keyword);
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+        }
+
+        // 文本高亮
+        function highlightText(element, keyword) {
+            const walker = document.createTreeWalker(
+                element,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+            );
+            
+            const nodes = [];
+            let node;
+            while (node = walker.nextNode()) {
+                if (node.parentElement.tagName !== 'SCRIPT' && 
+                    node.parentElement.tagName !== 'STYLE' &&
+                    !node.parentElement.classList.contains('highlight')) {
+                    nodes.push(node);
+                }
+            }
+            
+            nodes.forEach(node => {
+                const text = node.textContent;
+                const regex = new RegExp(`(${keyword})`, 'gi');
+                if (regex.test(text)) {
+                    const span = document.createElement('span');
+                    span.innerHTML = text.replace(regex, '<mark class="highlight">$1</mark>');
+                    node.parentNode.replaceChild(span, node);
+                }
+            });
+        }
+
+        // FAQ折叠
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            item.classList.toggle('active');
+        }
+
+        // 分享功能
+        function sharePage() {
+            if (navigator.share) {
+                navigator.share({
+                    title: '智能设备 Pro Max 说明书',
+                    text: '查看产品详细使用说明',
+                    url: window.location.href
+                });
+            } else {
+                // 复制链接到剪贴板
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('链接已复制到剪贴板');
+                });
+            }
+        }
+
+        // 回到顶部
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 滚动监听
+        window.addEventListener('scroll', () => {
+            // 进度条
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+            
+            // 回到顶部按钮显示/隐藏
+            const backToTop = document.getElementById('backToTop');
+            if (winScroll > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+            
+            // 自动高亮当前章节
+            const sections = document.querySelectorAll('.section');
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (winScroll >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.toc-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // 恢复上次阅读位置
+        window.addEventListener('load', () => {
+            const lastSection = localStorage.getItem('lastSection');
+            if (lastSection && document.getElementById(lastSection)) {
+                // 不自动滚动，只高亮目录
+                document.querySelectorAll('.toc-link').forEach(link => {
+                    if (link.getAttribute('onclick').includes(lastSection)) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+
+        // 防止iOS橡皮筋效果导致的布局问题
+        document.body.addEventListener('touchmove', function(e) {
+            if (e.target.closest('.sidebar')) return;
+        }, { passive: true });
+    </script>
+</body>
+</html>
