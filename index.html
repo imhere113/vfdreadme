@@ -223,6 +223,20 @@
             font-weight: 500;
         }
 
+        .toc-link.sub {
+            padding: 8px 12px 8px 28px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .toc-link.sub::before {
+            content: '•';
+            display: inline-block;
+            width: 14px;
+            margin-left: -14px;
+            color: var(--text-secondary);
+        }
+
         /* 主内容区 */
         .main-content {
             max-width: 800px;
@@ -294,6 +308,10 @@
             color: var(--text-secondary);
             font-size: 15px;
             line-height: 1.8;
+        }
+
+        .section-content h3, .section-content h4 {
+            scroll-margin-top: 90px;
         }
 
         .section-content p {
@@ -643,11 +661,21 @@
             <li class="toc-item"><a class="toc-link" onclick="scrollToSection('safety')">⚠️ 安全须知</a></li>
             <li class="toc-item"><a class="toc-link" onclick="scrollToSection('quickstart')">🚀 快速入门</a></li>
             <li class="toc-item"><a class="toc-link" onclick="scrollToSection('features')">✨ 主要功能</a></li>
-            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('usage')">📖 使用指南</a></li>
-            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('maintenance')">🔧 维护保养</a></li>
+            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('handset')">🎛️ 手控器说明</a></li>
+            <li class="toc-item"><a class="toc-link sub" onclick="scrollToSection('p5-handset-display')">手控器显示屏</a></li>
+            <li class="toc-item"><a class="toc-link sub" onclick="scrollToSection('p5-handset-led')">手控器指示灯</a></li>
+            <li class="toc-item"><a class="toc-link sub" onclick="scrollToSection('p5-handset-keys')">手控器按键</a></li>
+            <li class="toc-item"><a class="toc-link sub" onclick="scrollToSection('p5-handset-pairing')">手控器和变频器配对</a></li>
+            <li class="toc-item"><a class="toc-link sub" onclick="scrollToSection('p5-handset-mode')">手控器的工作模式</a></li>
+            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('vfd-params')">⚙️ 线切割专用变频器参数说明</a></li>
+            <li class="toc-item"><a class="toc-link sub" onclick="scrollToSection('p5-menu')">主菜单</a></li>
+            <li class="toc-item"><a class="toc-link sub" onclick="scrollToSection('p5-seg-freq')">设置-分段频率</a></li>
+            <li class="toc-item"><a class="toc-link sub" onclick="scrollToSection('p5-user-group')">设置-用户参数组</a></li>
+            <li class="toc-item"><a class="toc-link sub" onclick="scrollToSection('p5-factory-group')">设置-厂家参数组</a></li>
+            <li class="toc-item"><a class="toc-link sub" onclick="scrollToSection('p5-protect-group')">设置-保护参数组</a></li>
+            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('wiring')">🔌 系统接线</a></li>
             <li class="toc-item"><a class="toc-link" onclick="scrollToSection('troubleshooting')">🛠️ 故障排除</a></li>
             <li class="toc-item"><a class="toc-link" onclick="scrollToSection('faq')">❓ 常见问题</a></li>
-            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('specs')">📋 技术规格</a></li>
         </ul>
     </nav>
 
@@ -656,8 +684,8 @@
         <!-- 产品头部 -->
         <div class="product-header">
             <div class="product-icon">📱</div>
-            <h1 class="product-title">智能设备 Pro Max</h1>
-            <p class="product-subtitle">型号: XJ-2024 | 版本: V2.1</p>
+            <h1 class="product-title">线切割专用变频器</h1>
+            <p class="product-subtitle">型号: XJ-20250501 | 版本: V3.12</p>
         </div>
 
         <!-- 产品概览 -->
@@ -667,7 +695,7 @@
                 产品概览
             </h2>
             <div class="section-content">
-                <p>感谢您选择智能设备 Pro Max。本产品采用最新技术，为您提供卓越的使用体验。</p>
+                <p>感谢您选择智能设备 Pro Max 本产品采用最新技术，为您提供卓越的使用体验</p>
                 <div class="video-container">
                     <div class="video-placeholder">
                         <div class="play-btn">▶</div>
@@ -692,7 +720,7 @@
                 <div class="warning-box">
                     <span class="warning-icon">⚡</span>
                     <div class="warning-text">
-                        <strong>重要提示：</strong>使用前请仔细阅读以下安全注意事项，确保正确使用设备。
+                        <strong>重要提示：</strong>使用前请仔细阅读以下安全注意事项，确保正确使用设备
                     </div>
                 </div>
                 <ul>
@@ -752,46 +780,344 @@
                 主要功能
             </h2>
             <div class="section-content">
-                <p><strong>智能模式：</strong>设备可根据使用场景自动调整工作参数，优化性能表现。</p>
-                <p><strong>节能技术：</strong>采用先进的电源管理系统，续航时间提升40%。</p>
-                <p><strong>快速充电：</strong>支持快充技术，30分钟即可充至80%电量。</p>
-                <p><strong>智能互联：</strong>可通过专属APP远程控制和监控设备状态。</p>
-                <p><strong>安全防护：</strong>多重安全保护机制，包括过充保护、过热保护、短路保护等。</p>
+                <p><strong>待填写线切割专用变频器性能介绍：</strong></p>
+                <ul>
+                    <li>左右行程、超程信号、加工结束信号直接送入变频器进行控制</li>
+                    <li>内部设计有独特的断丝检测电路，无需外部电源供电，直接将“丝+”和“丝-”引线接在钼丝接触的导电块上就能完成安全、可靠的断丝检测；也可以使用“重锤”或其他形式的断丝检测，方便灵活，适应性强</li>
+                    <li>根据不同的机械特性使运丝电机的加速速度在大范围内可调，使换向速度更快，效率更高</li>
+                    <li>内置水泵控制开关，可直接控制单相水泵的启停，使用三相水泵时需外加交流接触器</li>
+                    <li>左右行程、加工结束、开关高频等输入、输出信号极性可调；左右行程可以使用行程开关或接近开关，常开、常闭可选，适应不同厂家的要求</li>
+                    <li>使用3根信号线进行8段速控制，每一段速均能在0HZ-80HZ之间调节，使机床能适应不同工件的加工要求，显著提高切割面光洁度，扩大机床的适用范围</li>
+                    <li>变频器在收到加工结束信号后的停机方式根据不同用户的使用习惯可设置为立即停机、停在左边或停在右边</li>
+                    <li>设有运丝、水泵启停的外部按钮，使机床内部线路更简单，大幅度缩短机床生产周期，省去了繁杂的连接线，降低成本，减少故障率</li>
+                    <li>在调试状态下忽略“加工结束”和“断丝检测”信号，并可切换到低速状态，轻松地完成上丝</li>
+                    <li>内置掉电及低压检测，掉电允许时间可调，掉电时自动刹车，能有效防止电机因失控而造成的断丝、丝筒超程</li>
+                    <li>功能控制、变频调整一体化设计，线切割机床在使用通用变频器时需要另外电路来实现高频通断的控制、左右传感器信号的转换，而使用待填写线切割专用变频器只需将关信号直接接入即可实现所有控制，与通用变频器相比省去太多不必要的参数设置，安装使用简单方便</li>
+                    <li>变频器可配专用手控盒，内设开运丝、关运丝、开水泵、关水泵、高低速转换、调试、参数调整等功能</li>
+                </ul>
             </div>
         </section>
 
-        <!-- 使用指南 -->
-        <section class="section" id="usage">
-            <h2 class="section-title">
-                <span class="section-icon">📖</span>
-                使用指南
+        <section class="section" id="handset">
+            <h2 class="section-title" id="p5-handset">
+                <span class="section-icon">🎛️</span>
+                手控器说明
             </h2>
             <div class="section-content">
-                <p><strong>开关机操作：</strong></p>
+                <h4 id="p5-handset-display" style="color:var(--text); font-size:14px; margin: 0 0 6px;">手控器显示屏</h4>
+                <p>液晶显示屏，参数和配置选项都为中文，所见即所得，无需查表</p>
+
+                <h4 id="p5-handset-led" style="color:var(--text); font-size:14px; margin: 16px 0 6px;">手控器指示灯</h4>
                 <ul>
-                    <li>开机：长按电源键3秒，直到指示灯亮起</li>
-                    <li>关机：长按电源键5秒，选择"关机"确认</li>
-                    <li>重启：长按电源键10秒强制重启</li>
+                    <li>丝筒正转时，正转灯亮；反转时，反转灯亮</li>
+                    <li>水泵开时，水泵灯亮；水泵关时，水泵灯灭</li>
+                    <li>高频开时，高频灯亮；高频关时，高频灯灭</li>
+                    <li>充电时，充电灯亮</li>
+                    <li>当设备缺电时候，缺点灯闪烁，需要充电</li>
+                    <li>当变频器出现故障时，故障等亮，并在液晶屏上显示具体的错误内容</li>
+                    <li>当变频器出现断丝得时候，断丝灯亮起；未断丝时，断丝灯灭</li>
+                    <li>当变频器处于保护模式时候，保护灯亮，系统会检测断丝；当变频器处于上丝模式时候，保护灯灭，系统忽略断丝</li>
                 </ul>
-                <p><strong>模式切换：</strong>短按功能键可在标准模式、节能模式、高性能模式之间切换，指示灯颜色对应不同模式（蓝/绿/红）。</p>
-                <p><strong>连接APP：</strong>扫描二维码下载专属APP，注册账号后按照提示绑定设备即可实现远程控制。</p>
+
+                <h4 id="p5-handset-keys" style="color:var(--text); font-size:14px; margin: 16px 0 6px;">手控器按键</h4>
+                <div class="warning-box">
+                    <span class="warning-icon">⚠️</span>
+                    <div class="warning-text">
+                        <strong>注意：</strong>手控器的参数设置必须要在变频器停机状态下进行
+                    </div>
+                </div>
+                <ul>
+                    <li>上下左右</li>
+                    <li>设置：按设置进入设置页面</li>
+                    <li>返回和确认</li>
+                    <li>调速：单键三功能循环——三档调速，分别对应设置菜单内的低中高预设频率</li>
+                    <li>配对：长按配对3秒，设备会进入配对模式，根据液晶屏的提示，选择合适的设备进行无线配对，点机确认配对完成，回到主菜单</li>
+                    <li>保护：单键双功能——切换上丝模式和保护模式</li>
+                    <li>丝筒：单键双功能——开启丝筒和关闭丝筒</li>
+                    <li>水泵：单键双功能——开启水泵和关闭水泵</li>
+                </ul>
+
+                <h4 id="p5-handset-pairing" style="color:var(--text); font-size:14px; margin: 16px 0 6px;">手控器和变频器配对</h4>
+                <ul>
+                    <li>确认变频器已上电，手控器电量充足</li>
+                    <li>长按手控器配对键3秒进入配对模式</li>
+                    <li>根据液晶屏提示，在列表中选择对应的变频器设备</li>
+                    <li>按确认完成配对，返回主菜单</li>
+                    <li>配对成功后，无线状态显示已连接，才可以进入设置和其他操作</li>
+                </ul>
+
+                <h4 id="p5-handset-mode" style="color:var(--text); font-size:14px; margin: 16px 0 6px;">手控器的工作模式</h4>
+                <ul>
+                    <li>手控器开机后默认工作在低功耗模式：如果3分钟内没有任何操作，自动进入休眠模式，按任意键唤醒</li>
+                    <li>手控器可以通过电源开关进行开机和关机</li>
+                    <li>手控器通过usb-typeC接口进行充电</li>
+                </ul>
             </div>
         </section>
 
-        <!-- 维护保养 -->
-        <section class="section" id="maintenance">
-            <h2 class="section-title">
-                <span class="section-icon">🔧</span>
-                维护保养
+        <section class="section" id="vfd-params">
+            <h2 class="section-title" id="p5-params">
+                <span class="section-icon">⚙️</span>
+                线切割专用变频器参数说明
             </h2>
             <div class="section-content">
+                <div class="warning-box">
+                    <span class="warning-icon">⚠️</span>
+                    <div class="warning-text">
+                        <strong>注意：</strong>当手控器和变频器处于连接成功的情况下，才能进行设置和其他操作
+                    </div>
+                </div>
+
+                <h4 id="p5-menu" style="color:var(--text); font-size:14px; margin: 16px 0 6px;">主菜单</h4>
                 <ul>
-                    <li>定期使用柔软干布清洁设备表面，避免使用化学清洁剂</li>
-                    <li>每月检查一次接口是否有灰尘堆积，必要时用棉签清理</li>
-                    <li>长期不使用时，请保持50%电量存放，每3个月充电一次</li>
-                    <li>避免设备受到剧烈撞击或挤压</li>
-                    <li>软件更新：定期检查系统更新，保持设备最佳性能</li>
+                    <li>无线状态：手控器和变频器之间的无线连接状态</li>
+                    <li>速率：当前变频器丝筒允许频率以及档位</li>
+                    <li>模式：当前模式——保护、上丝两种模式</li>
+                    <li>丝筒：当前丝筒情况——停机、正转、反转3种状态</li>
                 </ul>
+
+                <h4 id="p5-seg-freq" style="color:var(--text); font-size:14px; margin: 16px 0 6px;">设置-分段频率</h4>
+                <table style="width:100%; border-collapse: collapse; font-size: 14px;">
+                    <tr style="border-bottom: 2px solid var(--border);">
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">参数</th>
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">范围</th>
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">出厂值</th>
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">注释</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0段速率</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0-80（HZ）</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">70HZ</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">1段速率</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0-80（HZ）</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">50HZ</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">2段速率</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0-80（HZ）</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">35HZ</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">3段速率</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0-80（HZ）</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">20HZ</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">4段速率</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0-80（HZ）</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">15HZ</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">5段速率</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0-80（HZ）</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">10HZ</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">6段速率</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0-80（HZ）</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">50HZ</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">7段速率</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0-80（HZ）</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">25HZ</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">预设低段频率</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0-80（HZ）</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">15HZ</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">手控器调速按钮可以进行切换，注意：只有上丝模式时候生效</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">预设中段频率</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0-80（HZ）</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">50HZ</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">手控器调速按钮可以进行切换，注意：只有上丝模式时候生效</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">预设高段频率</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0-80（HZ）</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">80HZ</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">手控器调速按钮可以进行切换，注意：只有上丝模式时候生效</td>
+                    </tr>
+                </table>
+
+                <h4 id="p5-user-group" style="color:var(--text); font-size:14px; margin: 16px 0 6px;">设置-用户参数组</h4>
+                <table style="width:100%; border-collapse: collapse; font-size: 14px;">
+                    <tr style="border-bottom: 2px solid var(--border);">
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">参数</th>
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">范围</th>
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">出厂值</th>
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">注释</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">超程极性</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">常开/常闭</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">常开</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">左右换向极性</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">常开/常闭</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">常开</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">开高频极性</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">常开/常闭</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">常开</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">加工结束极性</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">常开/常闭/自适应</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">自适应</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">加工结束停机方向</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">立即停/靠左停/靠右停</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">立即停</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">变频关高频</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">是/否</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">是</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">开高频延时</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0.3秒-3.3秒</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0.8秒</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                </table>
+
+                <h4 id="p5-factory-group" style="color:var(--text); font-size:14px; margin: 16px 0 6px;">设置-厂家参数组</h4>
+                <table style="width:100%; border-collapse: collapse; font-size: 14px;">
+                    <tr style="border-bottom: 2px solid var(--border);">
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">参数</th>
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">范围</th>
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">出厂值</th>
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">注释</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">变频加速时间</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0.4秒-9.9秒</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0.4秒</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">变频减速时间</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0.4秒-9.9秒</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0.4秒</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">最低开高频频率</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0-13HZ</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">8HZ</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">起始速率</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0-10HZ</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">5HZ</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">丝筒启动方向</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">之前方向/向左/向右</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">之前方向</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">之前方向就是丝筒停止之前运动方向</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">低频力矩提升</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0-6档</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">2档</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">断丝检测极性</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">常开/常闭</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">常开</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">断丝检测时间</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0.1秒-9.9秒</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0.2秒</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">允许掉电最长时间</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0秒-9.9秒</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0.0秒</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">自动省电百分比</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0-100%</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0%</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                    <tr>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">过压调节</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0-100%</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0%</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);"></td>
+                    </tr>
+                </table>
+
+                <h4 id="p5-protect-group" style="color:var(--text); font-size:14px; margin: 16px 0 6px;">设置-保护参数组</h4>
+                <table style="width:100%; border-collapse: collapse; font-size: 14px;">
+                    <tr style="border-bottom: 2px solid var(--border);">
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">参数</th>
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">范围</th>
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">出厂值</th>
+                        <th style="text-align:left; padding:12px 8px; color:var(--text);">注释</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding:12px 8px; color:var(--text-secondary);">数据写保护</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">是/否</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">是</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">“是”选项开启数据写保护，无法修改参数，防止误触，如果要修改参数，需要线把数据写保护改成"否"</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">复位</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0-1</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">0</td>
+                        <td style="padding:12px 8px; color:var(--text-secondary);">遥控器复位</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section class="section" id="wiring">
+            <h2 class="section-title">
+                <span class="section-icon">🔌</span>
+                系统接线
+            </h2>
+            <div class="section-content">
+                <p><strong>接线前准备：</strong>确保设备与外部电源完全断电，待电容放电后再进行接线操作</p>
+                <ul>
+                    <li><strong>电源输入：</strong>将输入电源接入变频器电源端子，确认电压等级与铭牌一致</li>
+                    <li><strong>电机输出：</strong>将电机三相线接入输出端子，确保端子压接牢固、无松动</li>
+                    <li><strong>控制端子：</strong>按控制需求接入启停、正反转、速度给定等信号线，建议使用屏蔽线并单端接地</li>
+                    <li><strong>接地：</strong>变频器与电机必须可靠接地，接地线尽量短且线径满足要求</li>
+                </ul>
+                <p>接线完成后，请再次核对端子编号、线序与紧固情况，确认无误后再上电测试</p>
             </div>
         </section>
 
@@ -845,7 +1171,7 @@
                         <span class="faq-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        进入设置 > 系统 > 重置选项，选择"恢复出厂设置"，确认后设备将自动重启并清除所有数据。请注意提前备份重要数据。
+                        进入设置 > 系统 > 重置选项，选择"恢复出厂设置"，确认后设备将自动重启并清除所有数据 请注意提前备份重要数据
                     </div>
                 </div>
                 <div class="faq-item">
@@ -854,7 +1180,7 @@
                         <span class="faq-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        本设备支持PD 3.0、QC 4.0+、PPS等多种快充协议，最高支持65W快充。使用原装充电器可获得最佳充电体验。
+                        本设备支持PD 3.0、QC 4.0+、PPS等多种快充协议，最高支持65W快充 使用原装充电器可获得最佳充电体验
                     </div>
                 </div>
                 <div class="faq-item">
@@ -863,7 +1189,7 @@
                         <span class="faq-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        本设备具备IPX4生活防水等级，可防溅水但不建议浸入水中或在高湿度环境如浴室长期使用。
+                        本设备具备IPX4生活防水等级，可防溅水但不建议浸入水中或在高湿度环境如浴室长期使用
                     </div>
                 </div>
                 <div class="faq-item">
@@ -872,45 +1198,9 @@
                         <span class="faq-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        您可以通过以下方式联系我们：客服热线 400-XXX-XXXX（工作日9:00-18:00）、官方微信公众号"XXX服务"、官方网站在线客服。
+                        您可以通过以下方式联系我们：客服热线 400-XXX-XXXX（工作日9:00-18:00）、官方微信公众号"XXX服务"、官方网站在线客服
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- 技术规格 -->
-        <section class="section" id="specs">
-            <h2 class="section-title">
-                <span class="section-icon">📋</span>
-                技术规格
-            </h2>
-            <div class="section-content">
-                <table style="width:100%; font-size: 14px;">
-                    <tr style="border-bottom: 1px solid var(--border);">
-                        <td style="padding:10px 0; color:var(--text-secondary); width:40%;">产品尺寸</td>
-                        <td style="padding:10px 0; color:var(--text); font-weight:500;">150 × 75 × 8.5 mm</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--border);">
-                        <td style="padding:10px 0; color:var(--text-secondary);">产品重量</td>
-                        <td style="padding:10px 0; color:var(--text); font-weight:500;">185g</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--border);">
-                        <td style="padding:10px 0; color:var(--text-secondary);">电池容量</td>
-                        <td style="padding:10px 0; color:var(--text); font-weight:500;">5000mAh</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--border);">
-                        <td style="padding:10px 0; color:var(--text-secondary);">充电接口</td>
-                        <td style="padding:10px 0; color:var(--text); font-weight:500;">USB Type-C</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--border);">
-                        <td style="padding:10px 0; color:var(--text-secondary);">无线连接</td>
-                        <td style="padding:10px 0; color:var(--text); font-weight:500;">Wi-Fi 6 / 蓝牙 5.3</td>
-                    </tr>
-                    <tr>
-                        <td style="padding:10px 0; color:var(--text-secondary);">工作温度</td>
-                        <td style="padding:10px 0; color:var(--text); font-weight:500;">0°C ~ 40°C</td>
-                    </tr>
-                </table>
             </div>
         </section>
 
@@ -1083,7 +1373,7 @@
         function sharePage() {
             if (navigator.share) {
                 navigator.share({
-                    title: '智能设备 Pro Max 说明书',
+                    title: '线切割专用变频器 说明书',
                     text: '查看产品详细使用说明',
                     url: window.location.href
                 });
