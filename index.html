@@ -657,8 +657,9 @@
     <nav class="sidebar" id="sidebar">
         <div class="toc-title">目录导航</div>
         <ul class="toc-list" id="tocList">
-            <li class="toc-item"><a class="toc-link active" onclick="scrollToSection('overview')">📦 产品概览</a></li>
+            <!-- <li class="toc-item"><a class="toc-link active" onclick="scrollToSection('overview')">📦 产品概览</a></li> -->
             <li class="toc-item"><a class="toc-link" onclick="scrollToSection('safety')">⚠️ 安全须知</a></li>
+            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('wiring')">🔌 系统接线</a></li>
             <li class="toc-item"><a class="toc-link" onclick="scrollToSection('features')">✨ 主要功能</a></li>
             <li class="toc-item"><a class="toc-link" onclick="scrollToSection('handset')">🎛️ 手控器说明</a></li>
             <li class="toc-item"><a class="toc-link sub" onclick="scrollToSection('p5-handset-display')">手控器显示屏</a></li>
@@ -672,7 +673,6 @@
             <li class="toc-item"><a class="toc-link sub" onclick="scrollToSection('p5-user-group')">设置-用户参数组</a></li>
             <li class="toc-item"><a class="toc-link sub" onclick="scrollToSection('p5-factory-group')">设置-厂家参数组</a></li>
             <li class="toc-item"><a class="toc-link sub" onclick="scrollToSection('p5-protect-group')">设置-保护参数组</a></li>
-            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('wiring')">🔌 系统接线</a></li>
             <li class="toc-item"><a class="toc-link" onclick="scrollToSection('troubleshooting')">🛠️ 故障排除</a></li>
             <li class="toc-item"><a class="toc-link" onclick="scrollToSection('faq')">❓ 常见问题</a></li>
         </ul>
@@ -687,7 +687,8 @@
             <p class="product-subtitle">型号: XJ-20250501 | 版本: V3.12</p>
         </div>
 
-        <!-- 产品概览 -->
+        <!--
+        产品概览
         <section class="section" id="overview">
             <h2 class="section-title">
                 <span class="section-icon">📦</span>
@@ -703,6 +704,7 @@
                 </div>
             </div>
         </section>
+        -->
 
         <!-- 安全须知 -->
         <section class="section" id="safety">
@@ -724,6 +726,46 @@
                     <li>如发现设备异常发热、冒烟或异味，请立即停止使用并联系售后</li>
                     <li>请勿自行拆解设备，以免造成安全隐患</li>
                 </ul>
+            </div>
+        </section>
+
+        <section class="section" id="wiring">
+            <h2 class="section-title">
+                <span class="section-icon">🔌</span>
+                系统接线
+            </h2>
+            <div class="section-content">
+                <p><strong>接线前准备：</strong>确保设备与外部电源完全断电，待电容放电后再进行接线操作</p>
+                <ul>
+                    <li><strong>电源输入：</strong>将输入电源接入变频器电源端子，确认电压等级与铭牌一致</li>
+                    <li><strong>电机输出：</strong>将电机三相线接入输出端子，确保端子压接牢固、无松动</li>
+                    <li><strong>控制端子：</strong>按控制需求接入启停、正反转、速度给定等信号线，建议使用屏蔽线并单端接地</li>
+                    <li><strong>接地：</strong>变频器与电机必须可靠接地，接地线尽量短且线径满足要求</li>
+                </ul>
+                <p>接线完成后，请再次核对端子编号、线序与紧固情况，确认无误后再上电测试</p>
+                <div style="margin-top: 16px; display: grid; gap: 16px;">
+                    <div>
+                        <div style="font-size: 14px; font-weight: 600; color: var(--text); margin: 0 0 8px;">接线图1（行程开关）</div>
+                        <img src="./xtjx2.png" alt="系统接线图1（行程开关）" style="width: 100%; height: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface);">
+                    </div>
+                    <div>
+                        <div style="font-size: 14px; font-weight: 600; color: var(--text); margin: 0 0 8px;">接线图2（NPN型接近开关）</div>
+                        <img src="./xtxj1.png" alt="系统接线图2（NPN型接近开关）" style="width: 100%; height: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface);">
+                    </div>
+                </div>
+                <div style="margin-top: 24px;">
+                    <div style="font-size: 14px; font-weight: 600; color: var(--text); margin: 0 0 12px;">两种可选接口板</div>
+                    <div style="display: grid; gap: 16px;">
+                        <div>
+                            <div style="font-size: 13px; color: var(--text-secondary); margin: 0 0 8px;">接口板方案 1</div>
+                            <img src="./jkb1.jpg" alt="可选接口板方案1" style="width: 100%; height: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface);">
+                        </div>
+                        <div>
+                            <div style="font-size: 13px; color: var(--text-secondary); margin: 0 0 8px;">接口板方案 2</div>
+                            <img src="./jkb2.png" alt="可选接口板方案2" style="width: 100%; height: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface);">
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1058,46 +1100,6 @@
             </div>
         </section>
 
-        <section class="section" id="wiring">
-            <h2 class="section-title">
-                <span class="section-icon">🔌</span>
-                系统接线
-            </h2>
-            <div class="section-content">
-                <p><strong>接线前准备：</strong>确保设备与外部电源完全断电，待电容放电后再进行接线操作</p>
-                <ul>
-                    <li><strong>电源输入：</strong>将输入电源接入变频器电源端子，确认电压等级与铭牌一致</li>
-                    <li><strong>电机输出：</strong>将电机三相线接入输出端子，确保端子压接牢固、无松动</li>
-                    <li><strong>控制端子：</strong>按控制需求接入启停、正反转、速度给定等信号线，建议使用屏蔽线并单端接地</li>
-                    <li><strong>接地：</strong>变频器与电机必须可靠接地，接地线尽量短且线径满足要求</li>
-                </ul>
-                <p>接线完成后，请再次核对端子编号、线序与紧固情况，确认无误后再上电测试</p>
-                <div style="margin-top: 16px; display: grid; gap: 16px;">
-                    <div>
-                        <div style="font-size: 14px; font-weight: 600; color: var(--text); margin: 0 0 8px;">接线图1（行程开关）</div>
-                        <img src="./xtjx2.png" alt="系统接线图1（行程开关）" style="width: 100%; height: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface);">
-                    </div>
-                    <div>
-                        <div style="font-size: 14px; font-weight: 600; color: var(--text); margin: 0 0 8px;">接线图2（NPN型接近开关）</div>
-                        <img src="./xtxj1.png" alt="系统接线图2（NPN型接近开关）" style="width: 100%; height: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface);">
-                    </div>
-                </div>
-                <div style="margin-top: 24px;">
-                    <div style="font-size: 14px; font-weight: 600; color: var(--text); margin: 0 0 12px;">两种可选接口板</div>
-                    <div style="display: grid; gap: 16px;">
-                        <div>
-                            <div style="font-size: 13px; color: var(--text-secondary); margin: 0 0 8px;">接口板方案 1</div>
-                            <img src="./jkb1.jpg" alt="可选接口板方案1" style="width: 100%; height: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface);">
-                        </div>
-                        <div>
-                            <div style="font-size: 13px; color: var(--text-secondary); margin: 0 0 8px;">接口板方案 2</div>
-                            <img src="./jkb2.png" alt="可选接口板方案2" style="width: 100%; height: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface);">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- 故障排除 -->
         <section class="section" id="troubleshooting">
             <h2 class="section-title">
@@ -1189,6 +1191,7 @@
 
     <!-- 底部操作栏 -->
     <div class="bottom-bar">
+        <!--
         <a class="bottom-btn active" onclick="scrollToSection('overview')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -1196,6 +1199,7 @@
             </svg>
             <span>首页</span>
         </a>
+        -->
         <a class="bottom-btn" onclick="sharePage()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="18" cy="5" r="3"></circle>
