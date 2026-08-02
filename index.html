@@ -572,6 +572,101 @@
             visibility: visible;
         }
 
+        /* 接线图放大预览 */
+        .wiring-zoomable {
+            cursor: zoom-in;
+        }
+
+        .image-viewer {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.88);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+            z-index: 2000;
+        }
+
+        .image-viewer.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .image-viewer img {
+            max-width: min(1100px, calc(100vw - 48px));
+            max-height: calc(100vh - 120px);
+            width: auto;
+            height: auto;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+            transform-origin: center center;
+            transition: transform 0.15s ease;
+            cursor: grab;
+            user-select: none;
+            -webkit-user-drag: none;
+            touch-action: none;
+        }
+
+        .image-viewer img.dragging {
+            cursor: grabbing;
+        }
+
+        .image-viewer-caption {
+            color: #e2e8f0;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .image-viewer-toolbar {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .image-viewer-btn {
+            min-width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 999px;
+            padding: 0 14px;
+            background: rgba(255, 255, 255, 0.16);
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .image-viewer-zoom {
+            color: #fff;
+            font-size: 13px;
+            min-width: 52px;
+            text-align: center;
+        }
+
+        .image-viewer-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.16);
+            color: #fff;
+            font-size: 24px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
         /* 隐藏未匹配内容 */
         .section.hidden {
             display: none;
@@ -657,8 +752,7 @@
     <nav class="sidebar" id="sidebar">
         <div class="toc-title">目录导航</div>
         <ul class="toc-list" id="tocList">
-            <!-- <li class="toc-item"><a class="toc-link active" onclick="scrollToSection('overview')">📦 产品概览</a></li> -->
-            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('safety')">⚠️ 安全须知</a></li>
+            <li class="toc-item"><a class="toc-link active" onclick="scrollToSection('overview')">✨ 特点介绍与外观</a></li>
             <li class="toc-item"><a class="toc-link" onclick="scrollToSection('wiring')">🔌 系统接线</a></li>
             <li class="toc-item"><a class="toc-link" onclick="scrollToSection('features')">✨ 主要功能</a></li>
             <li class="toc-item"><a class="toc-link" onclick="scrollToSection('handset')">🎛️ 手控器说明</a></li>
@@ -675,6 +769,7 @@
             <li class="toc-item"><a class="toc-link sub" onclick="scrollToSection('p5-protect-group')">设置-保护参数组</a></li>
             <li class="toc-item"><a class="toc-link" onclick="scrollToSection('troubleshooting')">🛠️ 故障排除</a></li>
             <li class="toc-item"><a class="toc-link" onclick="scrollToSection('faq')">❓ 常见问题</a></li>
+            <li class="toc-item"><a class="toc-link" onclick="scrollToSection('safety')">⚠️ 安全须知</a></li>
         </ul>
     </nav>
 
@@ -687,45 +782,34 @@
             <p class="product-subtitle">型号: XJ-20250501 | 版本: V3.12</p>
         </div>
 
-        <!--
-        产品概览
+        <!-- 特点介绍与外观 -->
         <section class="section" id="overview">
             <h2 class="section-title">
-                <span class="section-icon">📦</span>
-                产品概览
+                <span class="section-icon">✨</span>
+                特点介绍与外观
             </h2>
             <div class="section-content">
-                <p>感谢您选择小易线切割专用变频器 本产品采用最新技术，为您提供卓越的使用体验</p>
-                <div class="video-container">
-                    <div class="video-placeholder">
-                        <div class="play-btn">▶</div>
-                        <span>观看产品介绍视频</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        -->
-
-        <!-- 安全须知 -->
-        <section class="section" id="safety">
-            <h2 class="section-title">
-                <span class="section-icon">⚠️</span>
-                安全须知
-            </h2>
-            <div class="section-content">
-                <div class="warning-box">
-                    <span class="warning-icon">⚡</span>
-                    <div class="warning-text">
-                        <strong>重要提示：</strong>使用前请仔细阅读以下安全注意事项，确保正确使用设备
-                    </div>
-                </div>
+                <p><strong>特点介绍：</strong></p>
                 <ul>
-                    <li>请勿在潮湿环境下使用或存放设备</li>
-                    <li>避免将设备暴露在极端温度环境中（低于-10°C或高于50°C）</li>
-                    <li>请使用原装充电器，避免使用劣质充电设备</li>
-                    <li>如发现设备异常发热、冒烟或异味，请立即停止使用并联系售后</li>
-                    <li>请勿自行拆解设备，以免造成安全隐患</li>
+                    <li><strong>产品提供无线蓝牙版和有线版两款可选，满足不同使用场景需求</strong></li>
+                    <li><strong>遥控器具备参数记忆功能，一个遥控器匹配不同变频器时可通过一键参数下发，设置更方便</strong></li>
+                    <li><strong>支持各类高级需求定制，可根据实际应用场景进行功能扩展</strong></li>
                 </ul>
+                <p><strong>技术支持联系方式：</strong><br>石工 15990186931<br>刘工 18506839332<br>陈工 18100184350</p>
+                <p><strong>外观展示：</strong></p>
+                <p>以下为设备外观示意，包含手持器和变频器两部分。</p>
+                <div style="margin-top: 16px; display: grid; gap: 16px;">
+                    <div>
+                        <div style="font-size: 14px; font-weight: 600; color: var(--text); margin: 0 0 8px;">手持器外观</div>
+                        <div style="display: flex; justify-content: center;">
+                            <img src="./skq.png" alt="手持器外观图" style="width: 100%; max-width: 360px; height: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface);">
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 14px; font-weight: 600; color: var(--text); margin: 0 0 8px;">变频器外观</div>
+                        <img src="./vfd.png" alt="变频器外观图" style="width: 100%; height: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface);">
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -750,7 +834,7 @@
                     </div>
                     <div>
                         <div style="font-size: 14px; font-weight: 600; color: var(--text); margin: 0 0 8px;">接线图2（NPN型接近开关）</div>
-                        <img src="./xtxj1.png" alt="系统接线图2（NPN型接近开关）" style="width: 100%; height: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface);">
+                        <img src="./xtjx11.png" alt="系统接线图2（NPN型接近开关）" style="width: 100%; height: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface);">
                     </div>
                 </div>
                 <div style="margin-top: 24px;">
@@ -1197,6 +1281,29 @@
             </div>
         </section>
 
+        <!-- 安全须知 -->
+        <section class="section" id="safety">
+            <h2 class="section-title">
+                <span class="section-icon">⚠️</span>
+                安全须知
+            </h2>
+            <div class="section-content">
+                <div class="warning-box">
+                    <span class="warning-icon">⚡</span>
+                    <div class="warning-text">
+                        <strong>重要提示：</strong>使用前请仔细阅读以下安全注意事项，确保正确使用设备
+                    </div>
+                </div>
+                <ul>
+                    <li>请勿在潮湿环境下使用或存放设备</li>
+                    <li>避免将设备暴露在极端温度环境中（低于-10°C或高于50°C）</li>
+                    <li>请使用原装充电器，避免使用劣质充电设备</li>
+                    <li>如发现设备异常发热、冒烟或异味，请立即停止使用并联系售后</li>
+                    <li>请勿自行拆解设备，以免造成安全隐患</li>
+                </ul>
+            </div>
+        </section>
+
         <div style="text-align:center; padding:40px 0; color:var(--text-secondary); font-size:12px;">
             <p>© 2024 XXX科技有限公司 版权所有</p>
             <p style="margin-top:8px;">说明书版本 v2.1 | 最后更新：2024-03-15</p>
@@ -1205,7 +1312,6 @@
 
     <!-- 底部操作栏 -->
     <div class="bottom-bar">
-        <!--
         <a class="bottom-btn active" onclick="scrollToSection('overview')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -1213,7 +1319,6 @@
             </svg>
             <span>首页</span>
         </a>
-        -->
         <a class="bottom-btn" onclick="sharePage()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="18" cy="5" r="3"></circle>
@@ -1238,6 +1343,18 @@
             </svg>
             <span>客服</span>
         </a>
+    </div>
+
+    <div class="image-viewer" id="imageViewer" onclick="handleImageViewerBackdrop(event)">
+        <div class="image-viewer-toolbar">
+            <button class="image-viewer-btn" type="button" onclick="zoomImageViewer(0.2)" aria-label="放大图片">+</button>
+            <button class="image-viewer-btn" type="button" onclick="zoomImageViewer(-0.2)" aria-label="缩小图片">-</button>
+            <button class="image-viewer-btn" type="button" onclick="resetImageViewerZoom()" aria-label="还原图片">还原</button>
+            <div class="image-viewer-zoom" id="imageViewerZoom">100%</div>
+        </div>
+        <button class="image-viewer-close" type="button" onclick="closeImageViewer()" aria-label="关闭图片预览">×</button>
+        <img id="imageViewerImg" src="" alt="" ondblclick="toggleImageViewerZoom()">
+        <div class="image-viewer-caption" id="imageViewerCaption"></div>
     </div>
 
     <!-- 回到顶部按钮 -->
@@ -1380,6 +1497,113 @@
             }
         }
 
+        function openImageViewer(src, alt) {
+            const viewer = document.getElementById('imageViewer');
+            const viewerImg = document.getElementById('imageViewerImg');
+            const viewerCaption = document.getElementById('imageViewerCaption');
+
+            viewerImg.src = src;
+            viewerImg.alt = alt || '接线图预览';
+            viewerCaption.textContent = alt || '接线图预览';
+            viewer.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            resetImageViewerZoom();
+        }
+
+        function closeImageViewer() {
+            const viewer = document.getElementById('imageViewer');
+            const viewerImg = document.getElementById('imageViewerImg');
+
+            imageViewerDragging = false;
+            imageViewerPinching = false;
+            imageViewerPointers.clear();
+            viewerImg.classList.remove('dragging');
+            viewer.classList.remove('active');
+            viewerImg.src = '';
+            document.body.style.overflow = '';
+        }
+
+        function handleImageViewerBackdrop(event) {
+            if (event.target.id === 'imageViewer') {
+                closeImageViewer();
+            }
+        }
+
+        let imageViewerScale = 1;
+        let imageViewerOffsetX = 0;
+        let imageViewerOffsetY = 0;
+        let imageViewerDragging = false;
+        let imageViewerDragStartX = 0;
+        let imageViewerDragStartY = 0;
+        let imageViewerPinching = false;
+        let imageViewerPinchStartDistance = 0;
+        let imageViewerPinchStartScale = 1;
+        const imageViewerPointers = new Map();
+
+        function updateImageViewerTransform() {
+            const viewerImg = document.getElementById('imageViewerImg');
+            const zoomLabel = document.getElementById('imageViewerZoom');
+
+            viewerImg.style.transform = `translate(${imageViewerOffsetX}px, ${imageViewerOffsetY}px) scale(${imageViewerScale})`;
+            zoomLabel.textContent = `${Math.round(imageViewerScale * 100)}%`;
+        }
+
+        function setImageViewerZoom(scale) {
+            imageViewerScale = Math.min(4, Math.max(0.5, Number(scale.toFixed(2))));
+
+            if (imageViewerScale <= 1) {
+                imageViewerOffsetX = 0;
+                imageViewerOffsetY = 0;
+            }
+
+            updateImageViewerTransform();
+        }
+
+        function zoomImageViewer(delta) {
+            setImageViewerZoom(imageViewerScale + delta);
+        }
+
+        function resetImageViewerZoom() {
+            imageViewerDragging = false;
+            imageViewerPinching = false;
+            document.getElementById('imageViewerImg').classList.remove('dragging');
+            imageViewerOffsetX = 0;
+            imageViewerOffsetY = 0;
+            setImageViewerZoom(1);
+        }
+
+        function getImageViewerPointerDistance() {
+            const pointers = Array.from(imageViewerPointers.values());
+
+            if (pointers.length < 2) return 0;
+
+            const dx = pointers[0].x - pointers[1].x;
+            const dy = pointers[0].y - pointers[1].y;
+            return Math.hypot(dx, dy);
+        }
+
+        function beginImageViewerDrag(pointer) {
+            if (!pointer || imageViewerScale <= 1) return;
+
+            imageViewerDragging = true;
+            imageViewerDragStartX = pointer.x - imageViewerOffsetX;
+            imageViewerDragStartY = pointer.y - imageViewerOffsetY;
+            imageViewerImg.classList.add('dragging');
+        }
+
+        function stopImageViewerDragState() {
+            imageViewerDragging = false;
+            imageViewerImg.classList.remove('dragging');
+        }
+
+        function toggleImageViewerZoom() {
+            if (imageViewerScale === 1) {
+                setImageViewerZoom(2);
+            } else {
+                resetImageViewerZoom();
+            }
+        }
+
         // 回到顶部
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1430,7 +1654,97 @@
                     }
                 });
             }
+
+            document.querySelectorAll('#wiring img').forEach(img => {
+                img.classList.add('wiring-zoomable');
+                img.addEventListener('click', () => {
+                    openImageViewer(img.src, img.alt);
+                });
+            });
         });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeImageViewer();
+            }
+        });
+
+        document.getElementById('imageViewer').addEventListener('wheel', (event) => {
+            if (!event.currentTarget.classList.contains('active')) return;
+
+            event.preventDefault();
+            zoomImageViewer(event.deltaY < 0 ? 0.1 : -0.1);
+        }, { passive: false });
+
+        const imageViewerImg = document.getElementById('imageViewerImg');
+
+        imageViewerImg.addEventListener('pointerdown', (event) => {
+            imageViewerPointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+            imageViewerImg.setPointerCapture(event.pointerId);
+
+            if (imageViewerPointers.size === 2) {
+                imageViewerPinching = true;
+                stopImageViewerDragState();
+                imageViewerPinchStartDistance = getImageViewerPointerDistance();
+                imageViewerPinchStartScale = imageViewerScale;
+                return;
+            }
+
+            if (imageViewerPointers.size === 1) {
+                beginImageViewerDrag({ x: event.clientX, y: event.clientY });
+            }
+        });
+
+        imageViewerImg.addEventListener('pointermove', (event) => {
+            if (!imageViewerPointers.has(event.pointerId)) return;
+
+            imageViewerPointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+            if (imageViewerPinching && imageViewerPointers.size >= 2) {
+                const currentDistance = getImageViewerPointerDistance();
+
+                if (imageViewerPinchStartDistance > 0) {
+                    setImageViewerZoom(imageViewerPinchStartScale * (currentDistance / imageViewerPinchStartDistance));
+                }
+                return;
+            }
+
+            if (imageViewerDragging && imageViewerPointers.size === 1) {
+                imageViewerOffsetX = event.clientX - imageViewerDragStartX;
+                imageViewerOffsetY = event.clientY - imageViewerDragStartY;
+                updateImageViewerTransform();
+            }
+        });
+
+        function stopImageViewerDrag(event) {
+            imageViewerPointers.delete(event.pointerId);
+
+            if (event && imageViewerImg.hasPointerCapture(event.pointerId)) {
+                imageViewerImg.releasePointerCapture(event.pointerId);
+            }
+
+            if (imageViewerPointers.size >= 2) {
+                imageViewerPinching = true;
+                imageViewerPinchStartDistance = getImageViewerPointerDistance();
+                imageViewerPinchStartScale = imageViewerScale;
+                stopImageViewerDragState();
+                return;
+            }
+
+            imageViewerPinching = false;
+            imageViewerPinchStartDistance = 0;
+
+            if (imageViewerPointers.size === 1) {
+                const remainingPointer = Array.from(imageViewerPointers.values())[0];
+                beginImageViewerDrag(remainingPointer);
+                return;
+            }
+
+            stopImageViewerDragState();
+        }
+
+        imageViewerImg.addEventListener('pointerup', stopImageViewerDrag);
+        imageViewerImg.addEventListener('pointercancel', stopImageViewerDrag);
 
         // 防止iOS橡皮筋效果导致的布局问题
         document.body.addEventListener('touchmove', function(e) {
